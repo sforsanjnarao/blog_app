@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 
@@ -15,6 +14,7 @@ async function startServer() {
   app.use(cors());
   app.use(express.json());
 
+  //this apllo server is for graphql
   const server = new ApolloServer({
     typeDefs,
     resolvers,

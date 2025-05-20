@@ -1,18 +1,20 @@
 const { MongoClient } = require('mongodb');
-require('dotenv').config();
-
-const MONGO_URI = process.env.MONGO_URL;
-const DB_NAME = 'blogdb';
-
 let db;
 
 async function connectDB() {
-  if (db) return db;
+  if (db) return db; // reuse existing connection
+
   try {
-    const client = new MongoClient(MONGO_URI);
+    let client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
     await client.connect();
-    db = client.db(DB_NAME);
+    db = client.db(); // if your URI includes db name, this works fine
+
     console.log("✅ MongoDB connected");
+
     return db;
   } catch (err) {
     console.error("❌ MongoDB connection failed:", err);
