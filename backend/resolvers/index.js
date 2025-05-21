@@ -1,3 +1,4 @@
+//resolvers/index.js
 const { ObjectId } = require('mongodb');
 const connectDB = require('../db/db');
 
@@ -14,7 +15,20 @@ const resolvers = {
       if (!post) throw new Error("Post not found");
       return { ...post, id: post._id.toString() };
     }
+  },
+  Mutation: {
+    createPost: async (_, { input }) => {
+      const db = await connectDB();
+      const newPost = {
+        title: input.title,
+        content: input.content,
+        author: input.author,
+      };
+      const result = await db.collection('posts').insertOne(newPost);
+      return { ...newPost, id: result.insertedId.toString() };
+    }
   }
 };
+
 
 module.exports = resolvers;
