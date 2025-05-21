@@ -1,7 +1,7 @@
 // app/posts/[id]/page.jsx
 import Link from 'next/link';
-import client from '../../../lib/apollo-client'; // Adjust path if needed
-import { GET_POST_BY_ID } from '../../../graphql/queries'; // Adjust path if needed
+import client from '../../../apollo-client'; // Adjust path if needed
+import { GET_POST_BY_ID } from '../../../graphql'; // Adjust path if needed
 
 export default async function PostDetailsPage({ params }) {
   const postId = params.id; // Get the ID from the URL

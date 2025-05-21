@@ -5,7 +5,7 @@ async function connectDB() {
   if (db) return db; // reuse existing connection
 
   try {
-    let client = new MongoClient(process.env.MONGO_URI, {
+    let client = new MongoClient(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
