@@ -8,12 +8,13 @@ const typeDefs = gql`
     content: String!
     author: String!
   }
+   
 
   type Query {
     posts: [Post!]!
     post(id: ID!): Post
   }
-     input CreatePostInput {
+  input CreatePostInput {
     title: String!
     content: String!
     author: String!
